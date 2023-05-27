@@ -36,6 +36,8 @@ class MyHomePage extends StatelessWidget {
               signOut(); // 로그아웃 함수
             },
           ),
+          // SignOutButton(), -> 이것처럼 갖다 써도 되고, 만들어도 된다.
+          //AppleSignInIconButton(),
         ],
       ),
       body: Padding(
