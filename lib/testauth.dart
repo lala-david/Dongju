@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:plz/ffiretest.dart';
 import 'homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -21,6 +22,15 @@ class AuthGate extends StatelessWidget{
 
         if(!snapshot.hasData){
           return SignInScreen(
+            headerBuilder: (context, constraints, _){
+              return Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.asset('assets/sung1.jpg'),
+                  ),
+              );
+            },
             providerConfigs: [
               EmailProviderConfiguration(),
             ],
@@ -36,9 +46,10 @@ class AuthGate extends StatelessWidget{
             'email': email,
             'uid': user.uid,
           };
-          users.add(toJson());
+          //users.add(toJson());
         }
-        return MyHomePage();
+        //return MyHomePage();
+        return TestFireUI();
       },
     );
   }

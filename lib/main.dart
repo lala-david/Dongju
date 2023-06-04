@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:plz/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:plz/firstScreen.dart';
 import 'firebase_options.dart';
 import 'testauth.dart';
 import 'homepage.dart';
@@ -34,12 +35,12 @@ class MyApp extends StatelessWidget {
             padding: MaterialStateProperty.all<EdgeInsets>(
               const EdgeInsets.all(24),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.purple),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
           ),
         ),
       ),
-      home: AuthGate(),
+      home: FirstScreen(),
     );
   }
 }

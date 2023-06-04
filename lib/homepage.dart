@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:plz/ffiretest.dart';
 import 'testauth.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -12,6 +13,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dong Ju',
@@ -23,9 +26,14 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Colors.green,
         elevation: 0.0,
         leading: IconButton(
-          icon: Icon(Icons.menu),
+          icon: Icon(Icons.person),
           onPressed: () {
             print('menu button is clicked!');
+            Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const TestFireUI(),
+                )
+            );
           },
         ),
         actions: [
@@ -133,6 +141,40 @@ class MyHomePage extends StatelessWidget {
                     letterSpacing: 1.0,
                     fontWeight: FontWeight.bold,
                   ),
+                ),
+              ],
+            ),
+            Row(
+                children: [
+                Icon(Icons.check_circle_outline),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Builder(
+                  builder: (context) {
+                    if(user != null){
+                      final name = user.displayName;
+                      final email = user.email;
+
+                      return Text(
+                        name != null ? '$name' : 'name is null $email',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          letterSpacing: 1.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    }else{
+                      return Text(
+                        'testconcur',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          letterSpacing: 1.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    }
+                  }
                 ),
               ],
             ),
