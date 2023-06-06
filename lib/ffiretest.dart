@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:plz/homepage.dart';
+import 'package:plz/rankingtest.dart';
 
 class TestFireUI extends StatelessWidget {
   const TestFireUI({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class TestFireUI extends StatelessWidget {
             print('menu button is clicked!');
             Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const MyHomePage(),
+                  builder: (context) => MyHomePage(),
                 )
             );
           },
@@ -38,7 +39,12 @@ class TestFireUI extends StatelessWidget {
             icon: Icon(Icons.logout),
             onPressed: () {
               print('logout button is clicked!');
-              signOut(); // 로그아웃 함수
+              //signOut(); // 로그아웃 함수
+              Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => RankingSystemPage(),
+                  )
+              );
             },
           ),
           // SignOutButton(), -> 이것처럼 갖다 써도 되고, 만들어도 된다.
