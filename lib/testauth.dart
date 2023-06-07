@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:plz/ffiretest.dart';
+import 'MainPage.dart';
 import 'homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -49,7 +50,7 @@ class AuthGate extends StatelessWidget{
           //users.add(toJson());
         }
         //return MyHomePage();
-        return TestFireUI();
+        return Main();
       },
     );
   }

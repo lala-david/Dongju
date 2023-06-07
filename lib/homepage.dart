@@ -44,9 +44,9 @@ class MyHomePage extends StatelessWidget {
         var contents = snapshot.data.toString();
         print(contents);
         String quizname = "test.c";
-        String scorename = "강성준";
 
-        int score = 5000;
+        String scorename = "강성준";
+        int score = 5000; // 이런 식으로 데이터를 추출해서 랭킹 데이터로 저장 시키게 된다.
 
         var codes = contents;
         quizdatacollect.doc('Quiztest').set(toJsonforuser(quizname, codes));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plz/quizpage.dart';
 import 'package:plz/testauth.dart';
 
 class FirstScreen extends StatelessWidget {

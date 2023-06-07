@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:plz/StartPage.dart';
 import 'package:plz/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:plz/firstScreen.dart';
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: FirstScreen(),
+      // home: FirstScreen(),
+      home: Start(),
     );
   }
 }
