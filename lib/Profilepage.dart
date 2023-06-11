@@ -10,7 +10,7 @@ class Profilepage extends StatelessWidget {
     return ProfileScreen(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Color(0xff8887ea),
         title: Text(
           "Cluster",
           style: TextStyle(

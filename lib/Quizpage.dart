@@ -13,14 +13,14 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
 Future<List<String>> getData(int num) async {
   await Future.delayed(Duration(seconds: 1));
   var result = await firestore.collection('Quizs').doc('Quiz$num').get();
-  print(result);
-  print(result.data()?['name']);
+  //print(result);
+  //print(result.data()?['name']);
   List<String> data = [
     result.data()?['name'],
     result.data()?['codes'],
     result.data()?['contents']
   ];
-  print(data);
+  //print(data);
   return data;
 }
 // void main() => runApp(MyApp());
@@ -55,7 +55,11 @@ class _SolvePageState extends State<SolvePage> with TickerProviderStateMixin {
   String selectedAnswer = '';
   List<String> wordList = [];
   // 데이터 베이스 전송을 위한 데이터 포맷 세팅
-  Map<String, dynamic> toJsonforscore(scorename, score) =>{
+  Map<String, dynamic> updatetoJsonforscore(scorename, score) =>{
+    'name' : scorename,
+    'score' : FieldValue.increment(score),
+  };
+  Map<String, dynamic> settoJsonforscore(scorename, score) =>{
     'name' : scorename,
     'score' : score,
   };
@@ -83,7 +87,6 @@ class _SolvePageState extends State<SolvePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    print(user);
     CollectionReference rankdatacollect = firestore.collection('rank');
     //목숨이 다 사라졌을 때
     if (life == 0) {
@@ -105,7 +108,22 @@ class _SolvePageState extends State<SolvePage> with TickerProviderStateMixin {
         var username = user?.displayName;
         print(username);
 
-        rankdatacollect.doc(username).set(toJsonforscore(username, point));
+        final docRef = rankdatacollect.doc(username);
+        docRef.get().then((doc){
+          if(doc.exists){
+            docRef.update(updatetoJsonforscore(username, point));
+          }else{
+            docRef.set(settoJsonforscore(username, point));
+          }
+        },
+        onError: (e) => print("DB Error!!"),
+        );
+        // if(rankdatacollect.doc(username).id == null) {
+        //   print("웨 안뒈???");
+        //   rankdatacollect.doc(username).set(settoJsonforscore(username, point));
+        // }else{
+        //   rankdatacollect.doc(username).update(updatetoJsonforscore(username, point));
+        // }
       }
       print(point);
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -131,20 +149,22 @@ class _SolvePageState extends State<SolvePage> with TickerProviderStateMixin {
             print(detail);
             return Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.deepPurpleAccent,
-                title: Container(
-                  margin: EdgeInsets.all(5),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(data[0]),
-                      Text(
-                        detail,
-                        style: TextStyle(
-                          fontSize: 12,
+                backgroundColor: Color(0xff8887ea),
+                title: Center(
+                  child: Container(
+                    margin: EdgeInsets.all(5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(data[0]),
+                        Text(
+                          detail,
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -326,7 +346,7 @@ class _CodeTemplateState extends State<CodeTemplate> {
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(
-              color: Colors.deepPurpleAccent.withOpacity(0.5),
+              color: Color(0xff8887ea).withOpacity(0.5),
               spreadRadius: 5,
               blurRadius: 7,
               offset: Offset(0, 0), // 아래로 그림자
@@ -374,7 +394,7 @@ class _CuriousBoxState extends State<CuriousBox> {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: widget.isFocus ? Colors.purpleAccent : Colors.white,
+              color: widget.isFocus ? Color(0xff8887ea) : Colors.white,
               spreadRadius: widget.isFocus ? 2 : 0,
               blurRadius: widget.isFocus ? 2 : 0,
               offset: Offset(0, 0), // shadows are cooler at the bottom
@@ -476,7 +496,7 @@ class _ChoiceAreaState extends State<ChoiceArea> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.deepPurpleAccent.withOpacity(0.3),
+              color: Color(0xff8887ea).withOpacity(0.3),
               spreadRadius: 5,
               blurRadius: 7,
               offset: Offset(0, 3), // 아래로 그림자
@@ -604,7 +624,7 @@ class _AnswerButtonState extends State<AnswerButton> {
         widget.onAnswerSelected(widget.option);
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.purpleAccent,
+        backgroundColor: Color(0xff8887ea),
         minimumSize: Size(30, 50),
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       ),
@@ -689,28 +709,64 @@ class _OverPageState extends State<OverPage> {
 }
 
 class ClearPage extends StatelessWidget {
-  const ClearPage({Key? key}) : super(key: key);
+  ClearPage({Key? key}) : super(key: key);
+  TextStyle fontStyle = new TextStyle(
+    fontSize: 30,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
         child: Center(
-          child: Column(children: [
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                "당신 천재 아니야?",
+                style: TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 50),
             ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Main(),
-                      ));
-                },
-                child: Text("메인으로")),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff8887ea),
+                minimumSize: Size(250, 80),
+              ),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Main(),
+                    ));
+              },
+              child: Text(
+                "메인으로",
+                style: fontStyle,
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
             ElevatedButton(
-                onPressed: () {
-                  print("문제 선택");
-                },
-                child: Text("문제 선택창")),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orangeAccent,
+                minimumSize: Size(250, 80),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                "목록으로",
+                style: fontStyle,
+              ),
+            )
           ]),
         ),
       ),
