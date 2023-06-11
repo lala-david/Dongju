@@ -16,7 +16,7 @@ class _RankingSystemPageState extends State<RankingSystemPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🍇 랭킹시스템'), // 앱바 타이틀
+        title: Center(child: const Text("🍇 랭킹")), // 앱바 타이틀
         backgroundColor: Color(0xff8887ea), // 앱바 배경색
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -110,24 +110,6 @@ class _RankingSystemPageState extends State<RankingSystemPage> {
           color: Colors.brown,
           size: 30,
         );
-      // case 1:
-      //   return Icon(
-      //     IconData(0x1F947, fontFamily: 'MaterialIcons'),
-      //     color: Colors.orangeAccent,
-      //     size: 28,
-      //   );
-      // case 2:
-      //   return Icon(
-      //     IconData(0x1F948, fontFamily: 'MaterialIcons'),
-      //     color: Colors.yellow,
-      //     size: 28,
-      //   );
-      // case 3:
-      //   return Icon(
-      //     IconData(0x1F949, fontFamily: 'MaterialIcons'),
-      //     color: Colors.green,
-      //     size: 28,
-      //   );
       default:
         return Text(
           rank.toString(),

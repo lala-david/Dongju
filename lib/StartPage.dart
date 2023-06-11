@@ -10,18 +10,9 @@ class _StartState extends State<Start> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
-      appBar : PreferredSize(
-        preferredSize: Size.fromHeight(50.0),
-        child: AppBar(
-          backgroundColor: const Color(0xffffffff),
-          centerTitle: true,
-          elevation: 0.0,
-        ),
-      ),
+      backgroundColor: Colors.white30,
       body: Builder(
         builder: (context){
-
           return GestureDetector(
             onTap: (){
               FocusScope.of(context).unfocus();
@@ -33,46 +24,44 @@ class _StartState extends State<Start> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Padding(padding: EdgeInsets.only(top: 30)),
-                    Center(
-                      child: Text(
-                        "Cluster",
-                        style: TextStyle(
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
                     SizedBox(height: 60,),
                     Center(
                       child: Text(
                         "어서오세요!",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold
                         ),
                       ),
                     ),
                     SizedBox(height: 40.0,),
                     Container(
-                      width: 200,
-                      height: 200,
+                      width: 250,
+                      height: 250,
+                      child: Center(child: Image.asset('assets/grape.png'),),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xffc1bffa), Color(0xffc2afc6)], ),
                       ),
                     ),
                     SizedBox(height: 40.0,),
-                    ElevatedButton(onPressed:() {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context)=>AuthGate()));
-                    }, child: const Text(
-                      '시작 하기',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                    Container(
+                      child: ElevatedButton(onPressed:() {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context)=>AuthGate()));
+                      }, child: Container(
+                        padding: EdgeInsets.all(15),
+                        child: const Text(
+                          '시작하기',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff8887ea),
-                        padding: EdgeInsets.symmetric(horizontal: 105, vertical: 17),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xff8887ea),
+                        ),
                       ),
                     ),
                     SizedBox(height: 7.0,),

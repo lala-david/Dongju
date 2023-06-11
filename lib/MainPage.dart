@@ -76,7 +76,7 @@ class _MainState extends State<Main> {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(
-                  "유동주의 아메리칸 드림",
+                  "우리들의 게임을 즐겨주세요.",
                   style: TextStyle(
                     fontSize: 22,
                     color: Colors.black,
@@ -88,6 +88,17 @@ class _MainState extends State<Main> {
               Container(
                 margin: EdgeInsets.only(top: 10, left: 30, right: 30,),
                 height: 130,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.red.withOpacity(0.3),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // 아래로 그림자
+                      )
+                    ]),
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
@@ -102,29 +113,19 @@ class _MainState extends State<Main> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       //이미지대신 확인용 네모
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                            color: Colors.white
-                        ),
-                      ),
-                      // Image.asset(
-                      //   'assets/images/button_icon.png', // 이미지의 경로
-                      //   width: 5, // 이미지의 너비
-                      //   height: 5, // 이미지의 높이
-                      // ),
-                      SizedBox(width: 20), // 이미지와 텍스트 사이의 간격
+                      Icon(Icons.quiz, size: 70,),
+                      SizedBox(width: 30), // 이미지와 텍스트 사이의 간격
                       Text(
-                        '문젠',
+                        '문제',
                         style: TextStyle(
-                            fontSize: 16
+                          fontSize: 35,
                         ),
                       ),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.pink,
+                    // backgroundColor: Color(0xffc9c7fa),
+                      backgroundColor: Colors.redAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       )
@@ -135,6 +136,17 @@ class _MainState extends State<Main> {
               Container(
                 margin: EdgeInsets.only(top: 15, left: 30, right: 30,),
                 height: 130,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.green.withOpacity(0.3),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // 아래로 그림자
+                      )
+                    ]),
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
@@ -143,40 +155,42 @@ class _MainState extends State<Main> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      //이미지대신 확인용 네모
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                            color: Colors.white
-                        ),
-                      ),
-                      // Image.asset(
-                      //   'assets/images/button_icon.png', // 이미지의 경로
-                      //   width: 5, // 이미지의 너비
-                      //   height: 5, // 이미지의 높이
-                      // ),
+                      Icon(Icons.emoji_events, size: 70,),
                       SizedBox(width: 30), // 이미지와 텍스트 사이의 간격
                       Text(
                         '랭킹',
                         style: TextStyle(
-                            fontSize: 16
+                            fontSize: 35
                         ),
                       ),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff8887ea),
+                    // backgroundColor: Color(0xffb2b0fd),
+                      backgroundColor: Colors.lightGreen,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       )
                   ),
                 ),
               ),
+
               SizedBox(height: 30,),
               Container(
                 margin: EdgeInsets.only(top: 15, left: 30, right: 30,),
                 height: 130,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.blue.withOpacity(0.3),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // 아래로 그림자
+                      )
+                    ]),
+
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
@@ -188,30 +202,19 @@ class _MainState extends State<Main> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      //이미지대신 확인용 네모
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                        ),
-                      ),
-                      // Image.asset(
-                      //   'assets/images/button_icon.png', // 이미지의 경로
-                      //   width: 5, // 이미지의 너비
-                      //   height: 5, // 이미지의 높이
-                      // ),
-                      SizedBox(width: 10), // 이미지와 텍스트 사이의 간격
+                      Icon(Icons.account_box, size: 70,),
+                      SizedBox(width: 30), // 이미지와 텍스트 사이의 간격
                       Text(
-                        '마페',
+                        '내 정보',
                         style: TextStyle(
-                            fontSize: 16
+                            fontSize: 35
                         ),
                       ),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff8887ea),
+                    // backgroundColor: Color(0xffe5e3ff),
+                      backgroundColor: Colors.lightBlueAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       )

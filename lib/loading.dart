@@ -103,7 +103,7 @@ class LinearProgressIndicatorDemoState extends State<LinearProgressIndicatorDemo
           child: LinearProgressIndicator (value: animation.value,
             valueColor: AlwaysStoppedAnimation<Color>(Colors.deepPurpleAccent),
             backgroundColor: Colors.black12,
-            //borderRadius: BorderRadius.circular(100),)
+            //borderRadius: BorderRadius.circular(50,)
         ),
       )
     );

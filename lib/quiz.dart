@@ -103,7 +103,6 @@ class _QuizState extends State<Quiz> {
       ),
       body: Container(
         child: Container(
-          height: 800.0,
           width: double.infinity,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -112,17 +111,20 @@ class _QuizState extends State<Quiz> {
               topRight: Radius.circular(30.0),
             ),
           ),
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.all(20),
-                  child: Text('문제를 선택해주세요~~', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
-              SingleChildScrollView(
-                child: Column(
-                  children: question_list,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(10),
+                    child: Text('문제를 선택해주세요~~', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: question_list,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

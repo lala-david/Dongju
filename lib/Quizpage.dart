@@ -13,14 +13,14 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
 Future<List<String>> getData(int num) async {
   await Future.delayed(Duration(seconds: 1));
   var result = await firestore.collection('Quizs').doc('Quiz$num').get();
-  //print(result);
-  //print(result.data()?['name']);
+  print(result);
+  print(result.data()?['name']);
   List<String> data = [
     result.data()?['name'],
     result.data()?['codes'],
     result.data()?['contents']
   ];
-  //print(data);
+  print(data);
   return data;
 }
 // void main() => runApp(MyApp());
@@ -87,6 +87,7 @@ class _SolvePageState extends State<SolvePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    print(user);
     CollectionReference rankdatacollect = firestore.collection('rank');
     //목숨이 다 사라졌을 때
     if (life == 0) {
@@ -116,14 +117,8 @@ class _SolvePageState extends State<SolvePage> with TickerProviderStateMixin {
             docRef.set(settoJsonforscore(username, point));
           }
         },
-        onError: (e) => print("DB Error!!"),
+          onError: (e) => print("DB Error!!"),
         );
-        // if(rankdatacollect.doc(username).id == null) {
-        //   print("웨 안뒈???");
-        //   rankdatacollect.doc(username).set(settoJsonforscore(username, point));
-        // }else{
-        //   rankdatacollect.doc(username).update(updatetoJsonforscore(username, point));
-        // }
       }
       print(point);
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -353,10 +348,14 @@ class _CodeTemplateState extends State<CodeTemplate> {
             )
           ]),
       child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: rowList,
+        scrollDirection: Axis.horizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: rowList,
+          ),
         ),
       ),
     );
@@ -386,9 +385,8 @@ class _CuriousBoxState extends State<CuriousBox> {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Container(
-        margin: EdgeInsets.all(5),
-        padding: EdgeInsets.all(5),
-        width: width * 0.195,
+        margin: EdgeInsets.only(top: 3, bottom: 3),
+        width: widget.isSolved?(widget.content.length) * 10:width * 0.195,
         height: height * 0.037,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -414,7 +412,7 @@ class _CuriousBoxState extends State<CuriousBox> {
           child: widget.isSolved
               ? Text(
             widget.content,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           )
               : Icon(Icons.question_mark, color: Colors.black54, size: 20),
         ));
@@ -511,7 +509,7 @@ class _ChoiceAreaState extends State<ChoiceArea> {
               child: const Text(
                 '4개의 보기중에 정답을 골라주세요.',
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
@@ -571,18 +569,18 @@ class _ChoiceAreaState extends State<ChoiceArea> {
                   "HP  ",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 30,
+                      fontSize: 25,
                       color: Colors.black),
                 ),
                 Icon(
                   Icons.favorite_outlined,
                   color: Colors.red,
-                  size: 40,
+                  size: 30,
                 ),
                 Text(
                   " x $life",
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -644,74 +642,79 @@ class OverPage extends StatefulWidget {
 }
 
 class _OverPageState extends State<OverPage> {
-  TextStyle fontStyle = new TextStyle(
-    fontSize: 30,
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
+        color: Colors.white,
         child: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                "Game Over",
-                style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                "assets/gameover.gif",
+              ),
+              const SizedBox(height: 50),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blueAccent,
+                  onPrimary: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  minimumSize: const Size(250, 80),
                 ),
-              ),
-            ),
-            SizedBox(height: 50),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueAccent,
-                minimumSize: Size(250, 80),
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(
+                onPressed: () {
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => Main(),
-                    ));
-              },
-              child: Text(
-                "메인으로",
-                style: fontStyle,
+                    ),
+                  );
+                },
+                child: const Text(
+                  "메인으로",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.pinkAccent,
-                minimumSize: Size(250, 80),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.pinkAccent,
+                  onPrimary: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  minimumSize: const Size(250, 80),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  "재도전!",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                "재도전!",
-                style: fontStyle,
-              ),
-            )
-          ]),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
+
 class ClearPage extends StatelessWidget {
   ClearPage({Key? key}) : super(key: key);
   TextStyle fontStyle = new TextStyle(
-    fontSize: 30,
+    fontSize: 25,
+    fontWeight: FontWeight.bold,
   );
 
   @override
@@ -728,7 +731,7 @@ class ClearPage extends StatelessWidget {
               child: Text(
                 "당신 천재 아니야?",
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 35,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -736,8 +739,12 @@ class ClearPage extends StatelessWidget {
             SizedBox(height: 50),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff8887ea),
-                minimumSize: Size(250, 80),
+                primary: Colors.blueAccent,
+                onPrimary: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                minimumSize: const Size(250, 80),
               ),
               onPressed: () {
                 Navigator.pushReplacement(
@@ -756,8 +763,12 @@ class ClearPage extends StatelessWidget {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orangeAccent,
-                minimumSize: Size(250, 80),
+                primary: Colors.pinkAccent,
+                onPrimary: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                minimumSize: const Size(250, 80),
               ),
               onPressed: () {
                 Navigator.pop(context);
