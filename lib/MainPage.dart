@@ -5,6 +5,7 @@ import 'package:plz/bottom.dart';
 import 'package:plz/quiz.dart';
 import 'package:plz/rankingtest.dart';
 
+import 'Profilepage.dart';
 import 'Quizpage.dart';
 
 // void main() => runApp(MyApp());
@@ -46,10 +47,10 @@ class _MainState extends State<Main> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.pinkAccent,
+      backgroundColor: Color(0xff8887ea),
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Color(0xff8887ea),
         title: Text(
           "Cluster",
           style: TextStyle(
@@ -70,10 +71,10 @@ class _MainState extends State<Main> {
               )
           ),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 30, left: 30),
+                padding: const EdgeInsets.only(top: 10),
                 child: Text(
                   "유동주의 아메리칸 드림",
                   style: TextStyle(
@@ -83,10 +84,10 @@ class _MainState extends State<Main> {
                   ),
                 ),
               ),
-              SizedBox(height: 100,),
+              // SizedBox(height: 100,),
               Container(
                 margin: EdgeInsets.only(top: 10, left: 30, right: 30,),
-                height: 100,
+                height: 130,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
@@ -133,7 +134,7 @@ class _MainState extends State<Main> {
               SizedBox(height: 30,),
               Container(
                 margin: EdgeInsets.only(top: 15, left: 30, right: 30,),
-                height: 100,
+                height: 130,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
@@ -165,7 +166,7 @@ class _MainState extends State<Main> {
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurpleAccent,
+                      backgroundColor: Color(0xff8887ea),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       )
@@ -175,12 +176,12 @@ class _MainState extends State<Main> {
               SizedBox(height: 30,),
               Container(
                 margin: EdgeInsets.only(top: 15, left: 30, right: 30,),
-                height: 100,
+                height: 130,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => ProfileScreen(),
+                          builder: (context) => Profilepage(),
                         )
                     );
                   },
@@ -210,7 +211,7 @@ class _MainState extends State<Main> {
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurpleAccent,
+                      backgroundColor: Color(0xff8887ea),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       )

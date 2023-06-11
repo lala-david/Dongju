@@ -37,19 +37,19 @@ class AuthGate extends StatelessWidget{
                   ),
               );
             },
-            footerBuilder: (context, _){
-              return Padding(padding: const EdgeInsets.all(10),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(50.0),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Image.asset('assets/DONG JU.png',
-                    fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-              );
-            },
+            // footerBuilder: (context, _){
+            //   return Padding(padding: const EdgeInsets.all(10),
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(50.0),
+            //     child: AspectRatio(
+            //       aspectRatio: 1,
+            //       child: Image.asset('assets/DONG JU.png',
+            //         fit: BoxFit.fill,
+            //         ),
+            //       ),
+            //     ),
+            //   );
+            // },
             providerConfigs: [
               EmailProviderConfiguration(),
             ],

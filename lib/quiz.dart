@@ -22,14 +22,54 @@ class Quiz extends StatefulWidget {
   _QuizState createState() => _QuizState();
 }
 
+class Question extends StatelessWidget {
+  final int number;
+  const Question({Key? key, required this.number}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(10),
+      height: 50,
+      child: ElevatedButton(
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:number)),
+          );
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.question_mark,
+              color: Color(0xff8887ea),
+              size: 35,
+            ),
+            SizedBox(width: 10),
+            Text(
+              //_isButtonPressed ? 'hello' : '문제 선택됨',
+              "문제 $number",
+              style: TextStyle(
+                fontWeight: FontWeight.bold, color: Color(0xff8887ea), fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            side: const BorderSide(color: Color(0xff8887ea)),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _QuizState extends State<Quiz> {
   bool _isButtonPressed = false;
-
-  void changeButtonText() {
-    setState(() {
-      _isButtonPressed = !_isButtonPressed;
-    });
-  }
 
   @override
   void didChangeDependencies() {
@@ -44,11 +84,15 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
+    List<Question> question_list = [];
+    for(int i = 1 ; i<11 ; i++){
+      question_list.add(new Question(number: i));
+    }
     return Scaffold(
-      backgroundColor: Colors.pinkAccent,
+      backgroundColor: Color(0xff8887ea),
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Color(0xff8887ea),
         title: Text(
           "Cluster",
           style: TextStyle(
@@ -68,406 +112,21 @@ class _QuizState extends State<Quiz> {
               topRight: Radius.circular(30.0),
             ),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:1)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.question_mark,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 1",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.all(20),
+                  child: Text('문제를 선택해주세요~~', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+              SingleChildScrollView(
+                child: Column(
+                  children: question_list,
                 ),
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:2)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 2",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:3)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 3",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:4)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 4",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:5)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 5",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:6)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 6",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:7)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 7",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:8)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 8",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:9)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 9",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 7,),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      changeButtonText();
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => SolvePage(num:10)),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          //_isButtonPressed ? 'hello' : '문제 선택됨',
-                          "문제 10",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffc1bffa),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
       //bottomNavigationBar: MenuBottom(),
-
     );
   }
 }
