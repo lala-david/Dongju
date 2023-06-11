@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
-import 'package:plz/ffiretest.dart';
+import 'package:plz/ffiretest(not use).dart';
 import 'MainPage.dart';
-import 'homepage.dart';
+import 'homepage(not use).dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthGate extends StatelessWidget{
@@ -26,10 +26,28 @@ class AuthGate extends StatelessWidget{
             headerBuilder: (context, constraints, _){
               return Padding(
                   padding: const EdgeInsets.all(10),
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Image.asset('assets/sung1.jpg'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50.0),
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Image.asset('assets/DONG JU.png',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
                   ),
+              );
+            },
+            footerBuilder: (context, _){
+              return Padding(padding: const EdgeInsets.all(10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50.0),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Image.asset('assets/DONG JU.png',
+                    fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
               );
             },
             providerConfigs: [

@@ -31,7 +31,7 @@ class _StartState extends State<Start> {
                   Padding(padding: EdgeInsets.only(top: 30)),
                   Center(
                     child: Text(
-                      "Cluster.",
+                      "Cluster",
                       style: TextStyle(
                         fontSize: 25,
                       ),
@@ -60,7 +60,7 @@ class _StartState extends State<Start> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (BuildContext context)=>AuthGate()));
                   }, child: const Text(
-                    '로그인',
+                    '시작 하기',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -72,20 +72,20 @@ class _StartState extends State<Start> {
                     ),
                   ),
                   SizedBox(height: 7.0,),
-                  ElevatedButton(onPressed:() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context)=>AuthGate()));
-                  }, child: const Text('회원가입',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffc1bffa),
-                      padding: EdgeInsets.symmetric(horizontal: 100, vertical: 17),
-                    ),
-                  ),
+                  // ElevatedButton(onPressed:() {
+                  //   Navigator.push(context,
+                  //       MaterialPageRoute(builder: (BuildContext context)=>AuthGate()));
+                  // }, child: const Text('회원가입',
+                  //   style: TextStyle(
+                  //     fontSize: 14,
+                  //     fontWeight: FontWeight.w500,
+                  //   ),
+                  // ),
+                  //   style: ElevatedButton.styleFrom(
+                  //     backgroundColor: Color(0xffc1bffa),
+                  //     padding: EdgeInsets.symmetric(horizontal: 100, vertical: 17),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

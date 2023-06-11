@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
-import 'package:plz/homepage.dart';
+import 'package:plz/homepage(not use).dart';
 import 'package:plz/rankingtest.dart';
 
 class TestFireUI extends StatelessWidget {

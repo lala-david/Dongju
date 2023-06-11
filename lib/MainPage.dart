@@ -1,18 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/auth.dart';
 import 'package:plz/bottom.dart';
+import 'package:plz/quiz.dart';
+import 'package:plz/rankingtest.dart';
 
-void main() => runApp(MyApp());
+import 'Quizpage.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: '힘내자',
-      home: Main(),
-    );
-  }
-}
+// void main() => runApp(MyApp());
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: '힘내자',
+//       home: Main(),
+//     );
+//   }
+// } 단독 페이지 실행용
 
 class Main extends StatefulWidget {
   @override
@@ -20,6 +26,7 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +83,17 @@ class _MainState extends State<Main> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 100,),
               Container(
                 margin: EdgeInsets.only(top: 10, left: 30, right: 30,),
-                height: 150,
+                height: 100,
                 child: ElevatedButton(
                   onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Quiz(),
+                        )
+                    );
                     // Navigator.push(context,
                     //     MaterialPageRoute(builder: (BuildContext context)=>LogIn()));
                   },
@@ -118,13 +130,14 @@ class _MainState extends State<Main> {
                   ),
                 ),
               ),
+              SizedBox(height: 30,),
               Container(
                 margin: EdgeInsets.only(top: 15, left: 30, right: 30,),
-                height: 150,
+                height: 100,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (BuildContext context)=>LogIn()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context)=>RankingSystemPage()));
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -142,7 +155,7 @@ class _MainState extends State<Main> {
                       //   width: 5, // 이미지의 너비
                       //   height: 5, // 이미지의 높이
                       // ),
-                      SizedBox(width: 10), // 이미지와 텍스트 사이의 간격
+                      SizedBox(width: 30), // 이미지와 텍스트 사이의 간격
                       Text(
                         '랭킹',
                         style: TextStyle(
@@ -159,13 +172,17 @@ class _MainState extends State<Main> {
                   ),
                 ),
               ),
+              SizedBox(height: 30,),
               Container(
                 margin: EdgeInsets.only(top: 15, left: 30, right: 30,),
-                height: 150,
+                height: 100,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (BuildContext context)=>LogIn()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ProfileScreen(),
+                        )
+                    );
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -201,12 +218,28 @@ class _MainState extends State<Main> {
                 ),
               ),
               SizedBox(height: 20,),
-              Container(
-                child: Text(
-                    'Copyright for \'고창의 왕자\' 유동주 all rights reserved.'
-                ),
-              )
+              // Container(
+              //   child: Text(
+              //       'Copyright for Team_Cluster all rights reserved.'
+              //   ),
+              // )
             ],
+          ),
+        ),
+      ),
+      //endDrawer: Text('Copyright for \'고창의 왕자\' 유동주 all rights reserved.'),
+      // bottomSheet: Container(
+      //   child: Text(
+      //       'Copyright for \'고창의 왕자\' 유동주 all rights reserved.'
+      //   ),
+      // ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+            'Copyright for Team_Cluster all rights reserved.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
           ),
         ),
       ),
@@ -232,7 +265,7 @@ class _MainState extends State<Main> {
       //     ),
       //   ],
       // ),
-      bottomNavigationBar: MenuBottom(),
+      //bottomNavigationBar: MenuBottom(),
     );
   }
 }

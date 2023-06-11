@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:plz/ffiretest.dart';
+import 'package:plz/ffiretest(not use).dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'testauth.dart';
 
@@ -22,7 +22,7 @@ class MyHomePage extends StatelessWidget {
   Future<String> loadAsset(String path) async{
     return await rootBundle.loadString(path);
   }
-  Map<String, dynamic> toJsonforuser(quizname, codes) => {
+  Map<String, dynamic> toJsonforquiz(quizname, codes) => {
     'name': quizname,
     'codes': codes,
   };
@@ -49,7 +49,7 @@ class MyHomePage extends StatelessWidget {
         int score = 5000; // 이런 식으로 데이터를 추출해서 랭킹 데이터로 저장 시키게 된다.
 
         var codes = contents;
-        quizdatacollect.doc('Quiztest').set(toJsonforuser(quizname, codes));
+        quizdatacollect.doc('Quiztest').set(toJsonforquiz(quizname, codes));
         rankdatacollect.doc('rank').set(toJsonforscore(scorename, score));
 
         return Scaffold(

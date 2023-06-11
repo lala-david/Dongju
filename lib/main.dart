@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:plz/StartPage.dart';
 import 'package:plz/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:plz/firstScreen.dart';
+import 'package:plz/firstScreen(not use).dart';
 import 'firebase_options.dart';
 import 'testauth.dart';
-import 'homepage.dart';
+import 'homepage(not use).dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             padding: MaterialStateProperty.all<EdgeInsets>(
               const EdgeInsets.all(24),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+            backgroundColor: MaterialStateProperty.all<Color>(Color(0xff8887ea)),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
           ),
         ),
